@@ -1,13 +1,21 @@
-import { build, BuildOptions, BuildResult, Message } from 'esbuild';
+import { build, BuildOptions, BuildResult, Message, context, BuildContext } from 'esbuild';
 import copy from 'esbuild-plugin-copy'
 
-(async () => {
-  const buildOptions: BuildOptions = {
-    entryPoints: ['src/index.ts'],
-    outdir: './dist',
+const ENTRY_POINTS = ['src/index.ts'];
+const OUT_DIR = './dist';
+
+const args = process.argv.slice(2);
+const watchMode = args.includes('--watch');
+
+watchMode ? watchProject() : buildProject();
+
+async function watchProject() {
+  let ctx: BuildContext = await context({
+    entryPoints: ENTRY_POINTS,
+    outdir: OUT_DIR,
+    minify: false,
     bundle: true,
-    // minify: true,
-    // platform: 'node',
+    loader: { ".ts": "ts" },
     plugins: [
       copy({
         assets: {
@@ -15,12 +23,32 @@ import copy from 'esbuild-plugin-copy'
           to: ['./']
         }
       })
-    ]
+    ],
+    logLevel: 'info',
+  });
+  await ctx.watch();
+  console.log('Watching...');
+}
+
+async function buildProject() {
+  const buildOptions: BuildOptions = {
+    entryPoints: ENTRY_POINTS,
+    outdir: OUT_DIR,
+    bundle: true,
+    minify: true,
+    plugins: [
+      copy({
+        assets: {
+          from: ['./src/index.html'],
+          to: ['./']
+        }
+      })
+    ],
   };
   const { warnings, errors }: BuildResult = await build(buildOptions);
 
   logResult(warnings, errors);
-})();
+}
 
 function logResult(warnings: Message[], errors: Message[]) {
   console.log('--------------');
