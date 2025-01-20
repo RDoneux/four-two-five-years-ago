@@ -37,8 +37,8 @@ async function buildProject() {
     minify: true,
     loader: {".ts": "ts"},
   };
-  const esmResult: BuildResult = await build({ ...buildOptions, outfile: `${OUT_DIR}/three-engine.js`, format: 'esm' });
-  const cjsResult: BuildResult = await build({ ...buildOptions, outfile: `${OUT_DIR}/three-engine.umd.cjs`, format: 'cjs' });
+  const esmResult: BuildResult = await build({ ...buildOptions, outfile: `${OUT_DIR}/custom-three-engine.js`, format: 'esm' });
+  const cjsResult: BuildResult = await build({ ...buildOptions, outfile: `${OUT_DIR}/custom-three-engine.umd.cjs`, format: 'cjs' });
 
   logResult([...esmResult.warnings, ...cjsResult.warnings], [...esmResult.errors, ...cjsResult.errors]);
 }

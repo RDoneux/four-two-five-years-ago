@@ -1,0 +1,1 @@
+export { DisplayModifier, type IGameEntityModifier } from './display-modifier';

@@ -13,6 +13,6 @@
     "types": ["node"],
     "declaration": true,
     "outDir": "./dist",
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
   }
 }

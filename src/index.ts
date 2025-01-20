@@ -32,15 +32,19 @@
 // }
 // renderer.setAnimationLoop(animate);
 
-// import { GameEntity } from 'three-engine';
+// import { GameEntity } from 'custom-three-engine';
 
-import { GameEntity } from "../dist/three-engine";
+import { DisplayModifier, GameEntity } from "../dist/custom-three-engine";
 
-class TestEntity extends GameEntity {
-    constructor() {
-        super();
-        console.log(this.name);
-    }
-}
+const gameEntity: TGameEntity = new GameEntity([new DisplayModifier()]);
 
-new TestEntity();
+console.log(gameEntity.displayModifier.name);
+
+// class TestEntity extends GameEntity {
+//     constructor() {
+//         super();
+//         console.log(this.name);
+//     }
+// }
+
+// new TestEntity();

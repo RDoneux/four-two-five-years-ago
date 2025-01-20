@@ -1,6 +1,6 @@
 {
-  "name": "custom-three-engine",
-  "version": "0.0.2",
+  "name": "custom-custom-three-engine",
+  "version": "0.0.3",
   "description": "",
   "private": false,
   "license": "ISC",
@@ -9,14 +9,14 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/three-engine.umd.cjs",
-  "module": "./dist/three-engine.js",
+  "main": "./dist/custom-three-engine.umd.cjs",
+  "module": "./dist/custom-three-engine.js",
   "types": "./dist/main.d.ts",
   "exports": {
     ".": {
       "types": "./dist/main.d.ts",
-      "import": "./dist/three-engine.js",
-      "require": "./dist/three-engine.umd.cjs"
+      "import": "./dist/custom-three-engine.js",
+      "require": "./dist/custom-three-engine.umd.cjs"
     },
     "./dist/style.css": "./dist/style.css"
   },
@@ -27,7 +27,7 @@
   "scripts": {
     "dev": "npm run build && concurrently \"npx ts-node ./build.ts --watch\" \"npx serve ./dist\"",
     "build": "rm -rf ./dist && tsc -b && npx ts-node ./build.ts",
-    "publish": "npm run build && npm publish --repository http://192.168.0.106:4873"
+    "publish": "npm run build && npm publish"
   },
   "dependencies": {
     "three": "^0.172.0"
