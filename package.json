@@ -1,14 +1,30 @@
 {
-  "name": "four-two-five-years-ago",
+  "name": "three-engine",
   "version": "0.0.0",
   "description": "",
+  "private": false,
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/three-engine.umd.cjs",
+  "module": "./dist/three-engine.js",
+  "types": "./dist/main.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/three-engine.js",
+      "require": "./dist/three-engine.umd.cjs"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "sideEffects": false,
   "scripts": {
     "dev": "concurrently \"npx ts-node ./build.ts --watch\" \"npx serve ./dist\"",
-    "build": "npx ts-node ./build.ts"
+    "build": "rm -rf ./dist && tsc -b && npx ts-node ./build.ts",
+    "publish": "npm publish --repository http://192.168.0.106:4873"
   },
   "dependencies": {
     "three": "^0.172.0"

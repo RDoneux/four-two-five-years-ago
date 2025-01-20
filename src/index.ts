@@ -1,29 +1,46 @@
 
-import {BoxGeometry, Camera, Mesh, MeshBasicMaterial, PerspectiveCamera, Scene, SpotLight, WebGLRenderer} from 'three';
+// import { AmbientLight, BoxGeometry, Camera, Mesh, MeshStandardMaterial, PerspectiveCamera, Scene, SpotLight, WebGLRenderer } from 'three';
 
-const scene: Scene = new Scene();
-const camera: Camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-const renderer: WebGLRenderer = new WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
+// const scene: Scene = new Scene();
+// const camera: Camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-document.body.appendChild(renderer.domElement);
+// const renderer: WebGLRenderer = new WebGLRenderer();
+// renderer.setSize(window.innerWidth, window.innerHeight);
 
-const geometry: BoxGeometry = new BoxGeometry(1,1,1)
-const material: MeshBasicMaterial = new MeshBasicMaterial({color: 0x00ff00})
-const cube: Mesh = new Mesh(geometry, material);
+// document.body.appendChild(renderer.domElement);
 
-const light: SpotLight = new SpotLight(0xffffff);
+// const geometry: BoxGeometry = new BoxGeometry(1, 1, 1)
+// const material: MeshStandardMaterial = new MeshStandardMaterial({ color: 0x00ffff })
+// const cube: Mesh = new Mesh(geometry, material);
 
-scene.add(cube);
-scene.add(light);
+// const light: SpotLight = new SpotLight(0xffffff);
+// const ambientLight: AmbientLight = new AmbientLight(0xffffff, 0.5);
 
-camera.position.z = 2;
+// light.position.set(1, 1, 1);
 
-function animate() {
-    cube.rotateX(0.01)
-    cube.rotateY(0.02)
-    renderer.render(scene, camera);
-}
+// scene.add(cube);
+// scene.add(light);
+// scene.add(ambientLight);
 
-renderer.setAnimationLoop(animate);
+// camera.position.z = 2;
+
+// function animate() {
+//     cube.rotateX(0.01)
+//     cube.rotateY(0.02)
+//     renderer.render(scene, camera);
+// }
+// renderer.setAnimationLoop(animate);
+
+// import { GameEntity } from 'three-engine';
+
+// import { GameEntity } from "../dist/three-engine";
+
+// class TestEntity extends GameEntity {
+//     constructor() {
+//         super();
+//         console.log(this.name);
+//     }
+// }
+
+// new TestEntity();

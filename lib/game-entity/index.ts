@@ -1,0 +1,1 @@
+export {GameEntity, type IGameEntity} from "./game-entity";

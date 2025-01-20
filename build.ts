@@ -1,7 +1,7 @@
 import { build, BuildOptions, BuildResult, Message, context, BuildContext } from 'esbuild';
 import copy from 'esbuild-plugin-copy'
 
-const ENTRY_POINTS = ['src/index.ts'];
+const ENTRY_POINTS = ['lib/main.ts'];
 const OUT_DIR = './dist';
 
 const args = process.argv.slice(2);
@@ -33,21 +33,14 @@ async function watchProject() {
 async function buildProject() {
   const buildOptions: BuildOptions = {
     entryPoints: ENTRY_POINTS,
-    outdir: OUT_DIR,
     bundle: true,
     minify: true,
-    plugins: [
-      copy({
-        assets: {
-          from: ['./src/index.html'],
-          to: ['./']
-        }
-      })
-    ],
+    loader: {".ts": "ts"},
   };
-  const { warnings, errors }: BuildResult = await build(buildOptions);
+  const esmResult: BuildResult = await build({ ...buildOptions, outfile: `${OUT_DIR}/three-engine.js`, format: 'esm' });
+  const cjsResult: BuildResult = await build({ ...buildOptions, outfile: `${OUT_DIR}/three-engine.umd.cjs`, format: 'cjs' });
 
-  logResult(warnings, errors);
+  logResult([...esmResult.warnings, ...cjsResult.warnings], [...esmResult.errors, ...cjsResult.errors]);
 }
 
 function logResult(warnings: Message[], errors: Message[]) {
