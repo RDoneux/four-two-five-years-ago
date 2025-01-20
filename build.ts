@@ -34,7 +34,7 @@ async function buildProject() {
   const buildOptions: BuildOptions = {
     entryPoints: ENTRY_POINTS,
     bundle: true,
-    minify: true,
+    minify: false,
     loader: {".ts": "ts"},
   };
   const esmResult: BuildResult = await build({ ...buildOptions, outfile: `${OUT_DIR}/custom-three-engine.js`, format: 'esm' });

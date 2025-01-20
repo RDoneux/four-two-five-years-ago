@@ -1,1 +1,0 @@
-export {Scene, type IScene} from "./scene";

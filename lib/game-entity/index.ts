@@ -1,1 +1,1 @@
-export { GameEntity, TGameEntity, GameEntityMixin, type IGameEntity } from "./game-entity";
+export { GameEntity, type GameEntityWithModifiers } from "./game-entity";

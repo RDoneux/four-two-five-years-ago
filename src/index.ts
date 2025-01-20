@@ -36,9 +36,13 @@
 
 import { DisplayModifier, GameEntity } from "../dist/custom-three-engine";
 
-const gameEntity: TGameEntity = new GameEntity([new DisplayModifier()]);
+// const gameEntity: InstanceType<typeof GameEntity> = new GameEntity([new DisplayModifier()]);
 
-console.log(gameEntity.displayModifier.name);
+// const gameEntity: InstanceType<typeof GameEntity> = GameEntityMixin<GameEntity>();
+
+const gameEntity = new GameEntity([new DisplayModifier()]);
+console.log(gameEntity.displayModifier.name)
+// console.log(gameEntity.displayModifier.name);
 
 // class TestEntity extends GameEntity {
 //     constructor() {

@@ -12,14 +12,6 @@
   "main": "./dist/custom-three-engine.umd.cjs",
   "module": "./dist/custom-three-engine.js",
   "types": "./dist/main.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/main.d.ts",
-      "import": "./dist/custom-three-engine.js",
-      "require": "./dist/custom-three-engine.umd.cjs"
-    },
-    "./dist/style.css": "./dist/style.css"
-  },
   "publishConfig": {
     "registry": "http://192.168.0.106:4873"
   },
