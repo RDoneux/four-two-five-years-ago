@@ -4,7 +4,7 @@
   "description": "",
   "private": false,
   "license": "ISC",
-  "author": "",
+  "author": "Rob Doneux",
   "type": "commonjs",
   "files": [
     "dist"
