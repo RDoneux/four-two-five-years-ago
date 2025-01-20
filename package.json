@@ -1,5 +1,5 @@
 {
-  "name": "three-engine",
+  "name": "custom-three-engine",
   "version": "0.0.1",
   "description": "",
   "private": false,
@@ -25,9 +25,9 @@
   },
   "sideEffects": false,
   "scripts": {
-    "dev": "concurrently \"npx ts-node ./build.ts --watch\" \"npx serve ./dist\"",
+    "dev": "npm run build && concurrently \"npx ts-node ./build.ts --watch\" \"npx serve ./dist\"",
     "build": "rm -rf ./dist && tsc -b && npx ts-node ./build.ts",
-    "publish": "npm publish --repository http://192.168.0.106:4873"
+    "publish": "npm run build && npm publish --repository http://192.168.0.106:4873"
   },
   "dependencies": {
     "three": "^0.172.0"

@@ -11,7 +11,7 @@ watchMode ? watchProject() : buildProject();
 
 async function watchProject() {
   let ctx: BuildContext = await context({
-    entryPoints: ENTRY_POINTS,
+    entryPoints: ['src/index.ts'],
     outdir: OUT_DIR,
     minify: false,
     bundle: true,

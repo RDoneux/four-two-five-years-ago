@@ -34,13 +34,13 @@
 
 // import { GameEntity } from 'three-engine';
 
-// import { GameEntity } from "../dist/three-engine";
+import { GameEntity } from "../dist/three-engine";
 
-// class TestEntity extends GameEntity {
-//     constructor() {
-//         super();
-//         console.log(this.name);
-//     }
-// }
+class TestEntity extends GameEntity {
+    constructor() {
+        super();
+        console.log(this.name);
+    }
+}
 
-// new TestEntity();
+new TestEntity();
