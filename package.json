@@ -20,6 +20,9 @@
     },
     "./dist/style.css": "./dist/style.css"
   },
+  "publishConfig": {
+    "registry": "http://192.168.0.106:4873"
+  },
   "sideEffects": false,
   "scripts": {
     "dev": "concurrently \"npx ts-node ./build.ts --watch\" \"npx serve ./dist\"",
