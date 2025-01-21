@@ -39,21 +39,33 @@
 
 // const gameEntity: InstanceType<typeof GameEntity> = GameEntityMixin<GameEntity>();
 
-import {GameEntity, DisplayModifier, HealthModifier} from 'custom-three-engine'
+import { GameEntity, DisplayModifier, HealthModifier } from 'custom-three-engine'
+import { AmbientLight, BoxGeometry, Camera, Mesh, MeshStandardMaterial, PerspectiveCamera, Scene, SpotLight, WebGLRenderer } from 'three';
+
+const scene: Scene = new Scene();
+const camera: Camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+camera.position.z = 2;
+
+const renderer: WebGLRenderer = new WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+document.body.appendChild(renderer.domElement);
 
 const gameEntity = GameEntity(DisplayModifier, HealthModifier)
 
-gameEntity.health;
+const light: SpotLight = new SpotLight(0xffffff);
+const ambientLight: AmbientLight = new AmbientLight(0xffffff, 0.5);
 
-// console.log(gameEntity.modifiers[0].name);
-// console.log(gameEntity.displayModifier.name)
-// console.log(gameEntity.displayModifier.name);
+light.position.set(1, 1, 1);
 
-// class TestEntity extends GameEntity {
-//     constructor() {
-//         super();
-//         console.log(this.name);
-//     }
-// }
+scene.add(gameEntity.mesh);
+scene.add(light);
+scene.add(ambientLight);
 
-// new TestEntity();
+function animate() {
+    gameEntity.mesh.rotateX(0.01)
+    gameEntity.mesh.rotateY(0.02)
+    renderer.render(scene, camera);
+}
+renderer.setAnimationLoop(animate);
