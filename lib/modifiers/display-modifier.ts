@@ -1,14 +1,16 @@
 import { GameEntity } from "../game-entity";
 
 export interface IGameEntityModifier {
-    name: string
-    apply: (entity: GameEntity) => void
+    applyTo: (entity: any) => void
 }
 
 export class DisplayModifier implements IGameEntityModifier {
     name: string = "Display Modifier";
 
-    apply(entity: GameEntity): void {
-        entity.displayModifier = this;
+    applyTo(entity: any): void {
+        Object.assign(entity, this)
     }
+    // apply(entity: GameEntity<[DisplayModifier]>): void {
+    //     entity.displayModifier = this;
+    // }
 }

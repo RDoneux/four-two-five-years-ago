@@ -34,14 +34,19 @@
 
 // import { GameEntity } from 'custom-three-engine';
 
-import { DisplayModifier, GameEntity } from "../dist/custom-three-engine";
 
 // const gameEntity: InstanceType<typeof GameEntity> = new GameEntity([new DisplayModifier()]);
 
 // const gameEntity: InstanceType<typeof GameEntity> = GameEntityMixin<GameEntity>();
 
-const gameEntity = new GameEntity([new DisplayModifier()]);
-console.log(gameEntity.displayModifier.name)
+import {GameEntity, DisplayModifier, HealthModifier} from 'custom-three-engine'
+
+const gameEntity = GameEntity(DisplayModifier, HealthModifier)
+
+gameEntity.health;
+
+// console.log(gameEntity.modifiers[0].name);
+// console.log(gameEntity.displayModifier.name)
 // console.log(gameEntity.displayModifier.name);
 
 // class TestEntity extends GameEntity {

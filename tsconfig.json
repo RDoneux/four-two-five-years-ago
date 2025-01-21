@@ -1,18 +1,17 @@
 {
   "include": ["lib/**/*"],
-  "exclude": ["src/**/*", "node_modules", "build.ts"],
+  "exclude": ["src/**/*", "node_modules", "build.mjs"],
   "compilerOptions": {
-    "module": "commonjs" /* Specify what module code is generated. */ /* Allow 'import x from y' when a module doesn't have a default export. */,
-    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
-    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
-    "strict": true /* Enable all strict type-checking options. */ /* Skip type checking .d.ts files that are included with TypeScript. */,
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "target": "ES2020",
-    "useDefineForClassFields": true,
-    "types": ["node"],
+    "module": "ESNext" /* Specify what module code is generated. */ /* Allow 'import x from y' when a module doesn't have a default export. */,
     "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "outDir": "./dist",
-    "emitDeclarationOnly": true,
+    "strict": true /* Enable all strict type-checking options. */ /* Skip type checking .d.ts files that are included with TypeScript. */,
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+    "moduleResolution": "node",
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "resolveJsonModule": true
   }
 }

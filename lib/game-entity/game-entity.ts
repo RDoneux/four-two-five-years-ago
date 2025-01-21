@@ -1,23 +1,35 @@
 import { UUID } from "crypto";
-import { DisplayModifier, IGameEntityModifier } from "../modifiers/display-modifier";
 
 interface IGameEntity {
-    id: UUID;
-    name?: string;
+  id: UUID;
+  name?: string;
 }
 
-export interface GameEntityWithModifiers extends IGameEntity {
-    displayModifier?: DisplayModifier;
+// Base Modifier Interface
+interface IGameEntityModifier {
+  applyTo(entity: any): void; // Modifiers attach methods/properties to the GameEntity
 }
 
-export class GameEntity implements GameEntityWithModifiers {
+// Helper Type to Merge Modifier Types into the GameEntity
+type MergeModifierTypes<T extends IGameEntityModifier[]> = T extends [infer First, ...infer Rest extends IGameEntityModifier[]]
+  ? First extends IGameEntityModifier
+  ? { [K in keyof First]: First[K] } & MergeModifierTypes<Rest>
+  : never
+  : {};
+export type GameEntityWithModifiers<T extends IGameEntityModifier[]> = GameEntityClass<T> & MergeModifierTypes<T>;
 
-    public id = crypto.randomUUID();
+class GameEntityClass<T extends IGameEntityModifier[]> implements IGameEntity {
 
-    public displayModifier?: DisplayModifier;
+  public id: UUID;
 
-    constructor(modifiers: IGameEntityModifier[]) {
-        modifiers.forEach(modifier => modifier.apply(this));
-    }
+  constructor(public modifiers: T) {
+    this.id = crypto.randomUUID();
+    modifiers.forEach(modifier => modifier.applyTo(this))
+  }
 
+}
+
+export function GameEntity<T extends { new(): IGameEntityModifier }[]>(...modifiers: T): GameEntityWithModifiers<{ [K in keyof T]: InstanceType<T[K]> }> {
+  const instances = modifiers.map((Modifier) => new Modifier());
+  return new GameEntityClass(instances) as GameEntityWithModifiers<{ [K in keyof T]: InstanceType<T[K]> }>;
 }

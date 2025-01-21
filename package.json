@@ -1,24 +1,21 @@
 {
-  "name": "custom-custom-three-engine",
+  "name": "custom-three-engine",
   "version": "0.0.3",
-  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "private": false,
   "license": "ISC",
   "author": "Rob Doneux",
-  "type": "commonjs",
   "files": [
     "dist"
   ],
-  "main": "./dist/custom-three-engine.umd.cjs",
-  "module": "./dist/custom-three-engine.js",
-  "types": "./dist/main.d.ts",
   "publishConfig": {
     "registry": "http://192.168.0.106:4873"
   },
-  "sideEffects": false,
   "scripts": {
-    "dev": "npm run build && concurrently \"npx ts-node ./build.ts --watch\" \"npx serve ./dist\"",
-    "build": "rm -rf ./dist && tsc -b && npx ts-node ./build.ts",
+    "dev": "npm run build && concurrently \"node ./build.mjs\" \"npx serve ./test\"",
+    "build": "rm -rf ./dist && tsc && npm link && npm link custom-three-engine",
     "publish": "npm run build && npm publish"
   },
   "dependencies": {
