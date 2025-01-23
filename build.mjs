@@ -13,10 +13,11 @@ const OUT_DIR = './test';
     loader: { ".ts": "ts" },
     plugins: [
       copy({
-        assets: {
-          from: ['./src/index.html'],
-          to: ['./']
-        }
+        assets: [{
+          from: './src/index.html',
+          to: './'
+        },
+        { from: './src/resources/**/*', to: './resources' }]
       })
     ],
     logLevel: 'info',

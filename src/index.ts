@@ -54,6 +54,8 @@ document.body.appendChild(renderer.domElement);
 
 const gameEntity = GameEntity(DisplayModifier, HealthModifier)
 
+gameEntity.loadFBX('resources/Dragon.fbx');
+
 const light: SpotLight = new SpotLight(0xffffff);
 const ambientLight: AmbientLight = new AmbientLight(0xffffff, 0.5);
 

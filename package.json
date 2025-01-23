@@ -19,7 +19,8 @@
     "publish": "npm run build && npm publish"
   },
   "dependencies": {
-    "three": "^0.172.0"
+    "three": "^0.172.0",
+    "three-stdlib": "^2.35.12"
   },
   "devDependencies": {
     "@types/node": "^22.10.7",
