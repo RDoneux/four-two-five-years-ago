@@ -39,7 +39,7 @@
 
 // const gameEntity: InstanceType<typeof GameEntity> = GameEntityMixin<GameEntity>();
 
-import { GameEntity, DisplayModifier, HealthModifier } from 'custom-three-engine'
+import { GameEntity, MeshModifier, HealthModifier } from 'custom-three-engine'
 import { AmbientLight, BoxGeometry, Camera, Mesh, MeshStandardMaterial, PerspectiveCamera, Scene, SpotLight, WebGLRenderer } from 'three';
 
 const scene: Scene = new Scene();
@@ -52,22 +52,20 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 
 document.body.appendChild(renderer.domElement);
 
-const gameEntity = GameEntity(DisplayModifier, HealthModifier)
+const gameEntity = GameEntity(HealthModifier, MeshModifier)
 
-gameEntity.loadFBX('resources/Dragon.fbx');
 
 const light: SpotLight = new SpotLight(0xffffff);
 const ambientLight: AmbientLight = new AmbientLight(0xffffff, 0.5);
 
 light.position.set(1, 1, 1);
 
-scene.add(gameEntity.mesh);
 scene.add(light);
 scene.add(ambientLight);
 
 function animate() {
-    gameEntity.mesh.rotateX(0.01)
-    gameEntity.mesh.rotateY(0.02)
+    // gameEntity.mesh.rotateX(0.01)
+    // gameEntity.mesh.rotateY(0.02)
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);

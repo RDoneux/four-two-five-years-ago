@@ -1,13 +1,8 @@
 import { UUID } from "crypto";
 
-interface IGameEntity {
-  id: UUID;
-  name?: string;
-}
-
 // Base Modifier Interface
-interface IGameEntityModifier {
-  applyTo(entity: any): void; // Modifiers attach methods/properties to the GameEntity
+export interface IGameEntityModifier {
+  applyTo(entity: GameEntityClass<any>): void; // Modifiers attach methods/properties to the GameEntity
 }
 
 // Helper Type to Merge Modifier Types into the GameEntity
@@ -18,7 +13,7 @@ type MergeModifierTypes<T extends IGameEntityModifier[]> = T extends [infer Firs
   : {};
 export type GameEntityWithModifiers<T extends IGameEntityModifier[]> = GameEntityClass<T> & MergeModifierTypes<T>;
 
-class GameEntityClass<T extends IGameEntityModifier[]> implements IGameEntity {
+export class GameEntityClass<T extends IGameEntityModifier[]> {
 
   public id: UUID;
 
